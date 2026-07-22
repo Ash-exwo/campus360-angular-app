@@ -29,10 +29,23 @@ app.controller("dashboardcontroller", function ($scope) {
         "BBA"
     ];
 
-    // Initial selected department
     $scope.selectedDepartments = "MCA";
 
-    // Hide student list initially
+    // ng-disabled Demo
+    $scope.isDisabled = true;
+
+    $scope.allowAdmission = function () {
+        $scope.isDisabled = false;
+    };
+
+    $scope.isReadOnly = true;
+
+    $scope.toggleReadOnly = function () {
+        $scope.isReadOnly = !$scope.isReadOnly;
+    };
+    
+
+    // Hide Student List Initially
     $scope.showstudents = false;
 
     // Add Student
