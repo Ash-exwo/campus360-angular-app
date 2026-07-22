@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="campus360">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management App</title>
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-controller="dashboardcontroller">
+
+    <h2>College Dashboard</h2>
+
+    <label>College Name</label><br>
+    <input type="text" ng-model="collegename">
+    <h1>{{collegename}}</h1>
+
+    <br><br>
+
+    <label>Total Students</label><br>
+    <input type="number" ng-model="totalStudents">
+
+    <h4 ng-class="{'green': totalStudents > 1000, 'red': totalStudents <= 1000}">
+        Total Students: {{totalStudents}}
+    </h4>
+
+    <button ng-click="addstudent()">
+        Add Student
+    </button>
+
+    <br><br>
+
+    <label>Total Faculty</label><br>
+    <input type="number" ng-model="totalFaculty">
+
+    <h4 class="blueviolet">
+        Total Faculty: {{totalFaculty}}
+    </h4>
+
+    <button ng-click="addfaculty()">
+        Add Faculty
+    </button>
+
+    <br><br>
+
+    <h2>Student List</h2>
+
+    <button ng-click="showstudents = !showstudents">
+        Show / Hide Students
+    </button>
+
+    <ul ng-show="showstudents">
+        <li ng-repeat="student in students">
+            {{student}}
+        </li>
+    </ul>
+
+</body>
+
+</html>

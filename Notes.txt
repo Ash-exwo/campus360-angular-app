@@ -1,0 +1,538 @@
+DAY 2
+
+1. cntrl + f + i : to erase the cache in browser, old files stores in the cache which will interfere the new code and files
+
+2. MVC ARCHITECTURE
+
+# MVC Architecture – Structured Notes
+
+## 1. What is MVC?
+
+**MVC** stands for:
+
+* **Model**
+* **View**
+* **Controller**
+
+It is a software architecture pattern used to organize an application into three separate parts.
+
+The main purpose of MVC is to separate:
+
+* data handling,
+* user interface,
+* application logic.
+
+This makes the code easier to develop, understand, test, and maintain.
+
+---
+
+## 2. Basic Structure
+
+```text
+User
+  ↓
+View
+  ↓
+Controller
+  ↓
+Model
+  ↓
+Database
+```
+
+The response then comes back like this:
+
+```text
+Database
+  ↓
+Model
+  ↓
+Controller
+  ↓
+View
+  ↓
+User
+```
+
+---
+
+# 3. Components of MVC
+
+## A. Model
+
+The **Model** manages the data and business logic of the application.
+
+It is responsible for:
+
+* storing data,
+* retrieving data,
+* updating data,
+* deleting data,
+* communicating with the database,
+* applying validation and business rules.
+
+### Example
+
+In a student management system, the Model may contain:
+
+```javascript
+{
+    name: "Aswathy",
+    department: "MCA",
+    email: "ash@example.com"
+}
+```
+
+A Mongoose model may look like:
+
+```javascript
+const mongoose = require("mongoose");
+
+const studentSchema = new mongoose.Schema({
+    name: String,
+    department: String,
+    email: String
+});
+
+const studentModel = mongoose.model(
+    "students",
+    studentSchema
+);
+
+module.exports = studentModel;
+```
+
+The Model does not usually handle page design.
+
+---
+
+## B. View
+
+The **View** is the user interface of the application.
+
+It displays data to the user and collects user input.
+
+The View may contain:
+
+* HTML,
+* CSS,
+* forms,
+* buttons,
+* tables,
+* cards,
+* AngularJS templates,
+* React components.
+
+### Example
+
+```html
+<h2>{{student.name}}</h2>
+<p>{{student.department}}</p>
+<p>{{student.email}}</p>
+```
+
+The View should mainly focus on presentation.
+
+It should not directly contain database logic.
+
+---
+
+## C. Controller
+
+The **Controller** connects the Model and the View.
+
+It receives user requests, processes them, communicates with the Model, and sends the result to the View.
+
+The Controller is responsible for:
+
+* receiving input,
+* handling requests,
+* calling Model functions,
+* deciding what response should be returned,
+* passing data to the View.
+
+### Example
+
+```javascript
+app.controller(
+    "studentController",
+    function ($scope) {
+
+        $scope.student = {
+            name: "Aswathy",
+            department: "MCA",
+            email: "ash@example.com"
+        };
+
+    }
+);
+```
+
+In an Express backend:
+
+```javascript
+const studentModel = require("../models/studentModel");
+
+const getStudents = async (req, res) => {
+    try {
+        const students = await studentModel.find();
+
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to fetch students"
+        });
+    }
+};
+
+module.exports = {
+    getStudents
+};
+```
+
+---
+
+# 4. Working of MVC
+
+Consider a student registration application.
+
+### Step 1: User enters data
+
+The user enters student details in a form.
+
+```html
+<input type="text" ng-model="student.name">
+```
+
+### Step 2: View sends the input
+
+The View sends the data to the Controller.
+
+```html
+<button ng-click="registerStudent()">
+    Register
+</button>
+```
+
+### Step 3: Controller processes the request
+
+The Controller receives the student data.
+
+```javascript
+$scope.registerStudent = function () {
+    console.log($scope.student);
+};
+```
+
+### Step 4: Model stores the data
+
+The Controller sends the data to the Model.
+
+The Model saves it in the database.
+
+### Step 5: Result is returned
+
+The Model returns the result to the Controller.
+
+### Step 6: View displays the result
+
+The Controller updates the View with a success message or updated student list.
+
+---
+
+# 5. MVC Example Folder Structure
+
+A Node.js and Express MVC project may be organized as:
+
+```text
+campus360/
+│
+├── models/
+│   └── studentModel.js
+│
+├── controllers/
+│   └── studentController.js
+│
+├── routes/
+│   └── studentRoutes.js
+│
+├── views/
+│   ├── index.html
+│   └── students.html
+│
+├── public/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── app.js
+│
+├── app.js
+└── package.json
+```
+
+### Purpose of each folder
+
+```text
+models
+```
+
+Contains database schemas and data-related logic.
+
+```text
+controllers
+```
+
+Contains request-processing logic.
+
+```text
+routes
+```
+
+Defines API URLs and connects them to controllers.
+
+```text
+views
+```
+
+Contains user-interface files.
+
+```text
+public
+```
+
+Contains CSS, client-side JavaScript, images, and other static files.
+
+---
+
+# 6. MVC Flow Example
+
+Suppose the user requests all students.
+
+```text
+GET /students
+```
+
+The flow is:
+
+```text
+User
+  ↓
+Route
+  ↓
+Controller
+  ↓
+Model
+  ↓
+Database
+  ↓
+Model
+  ↓
+Controller
+  ↓
+View or JSON response
+```
+
+### Route
+
+```javascript
+router.get(
+    "/students",
+    studentController.getStudents
+);
+```
+
+### Controller
+
+```javascript
+const getStudents = async (req, res) => {
+    const students = await studentModel.find();
+
+    res.json(students);
+};
+```
+
+### Model
+
+```javascript
+const studentModel = mongoose.model(
+    "students",
+    studentSchema
+);
+```
+
+---
+
+# 7. Advantages of MVC
+
+## Separation of concerns
+
+Each part has a separate responsibility.
+
+* Model handles data.
+* View handles design.
+* Controller handles logic.
+
+## Easy maintenance
+
+Changes in one section usually do not require major changes in the other sections.
+
+For example, the page design can be changed without changing the database model.
+
+## Code reusability
+
+The same Model or Controller can be used by different Views.
+
+## Easier testing
+
+Each part can be tested separately.
+
+## Team collaboration
+
+Different developers can work on different parts:
+
+* frontend developer on View,
+* backend developer on Model,
+* application developer on Controller.
+
+## Better organization
+
+Large projects become easier to understand and manage.
+
+---
+
+# 8. Disadvantages of MVC
+
+* It may feel complicated for very small projects.
+* It creates more folders and files.
+* Beginners may initially find the data flow confusing.
+* Poor separation can make the Controller too large.
+* Communication between the three parts may require additional code.
+
+---
+
+# 9. MVC in AngularJS
+
+In AngularJS:
+
+### Model
+
+The data stored inside `$scope` can act as the Model.
+
+```javascript
+$scope.collegename = "FISAT";
+$scope.totstud = 60;
+$scope.totfac = 10;
+```
+
+### View
+
+The HTML page is the View.
+
+```html
+<h1>{{collegename}}</h1>
+<h2>{{totstud}}</h2>
+```
+
+### Controller
+
+The AngularJS controller controls the View and Model.
+
+```javascript
+app.controller(
+    "dashboardController",
+    function ($scope) {
+
+        $scope.collegename = "FISAT";
+        $scope.totstud = 60;
+        $scope.totfac = 10;
+
+    }
+);
+```
+
+Your Campus360 application follows a simple MVC-like structure:
+
+```text
+Model:
+$scope.collegename
+$scope.totstud
+$scope.totfac
+
+View:
+index.html
+
+Controller:
+dashboardController in app.js
+```
+
+---
+
+# 10. Simple Real-Life Example
+
+Think of a restaurant.
+
+### View
+
+The menu and dining area visible to the customer.
+
+### Controller
+
+The waiter who receives the customer's order.
+
+### Model
+
+The kitchen and storage area where food is prepared and managed.
+
+The customer does not directly communicate with the kitchen.
+
+The waiter connects the customer and the kitchen.
+
+Similarly:
+
+```text
+User ↔ View ↔ Controller ↔ Model
+```
+
+---
+
+# 11. Difference Between Model, View and Controller
+
+| Component  | Main responsibility                          | Example               |
+| ---------- | -------------------------------------------- | --------------------- |
+| Model      | Handles data and database logic              | Student schema        |
+| View       | Displays information                         | HTML page             |
+| Controller | Handles requests and connects Model and View | `dashboardController` |
+
+---
+
+# 12. Exam Definition
+
+**MVC is a software architectural pattern that separates an application into Model, View, and Controller. The Model manages data and business logic, the View presents information to the user, and the Controller handles user requests and coordinates communication between the Model and View.**
+
+---
+
+## In one line
+
+```text
+Model = Data
+View = User Interface
+Controller = Connection and Logic
+```
+
+
+TOOLS
+
+1. https://www.gumloop.com/
+   https://www.gumloop.com/agents/4JLkUwfCBX1ztHjnntwBxC
+
+2. https://getdesign.md/ - forntend design templates
+
+3. https://21st.dev/ - interactive animations
+
+4. https://spline.design/ - 3D animation
+
+5. https://templatemo.com/ - design templates (template -> download ->  ->)
+
+https://www.tooplate.com/live/2167_orbital
+
+    
