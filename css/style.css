@@ -502,3 +502,57 @@ footer {
         width: 100%;
     }
 }
+
+/* ------------------------------
+   NG-DISABLED
+------------------------------ */
+
+.disable-box{
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.primary-button:disabled{
+    background: #d8d8d8;
+    color: #777;
+    cursor: not-allowed;
+    opacity: .8;
+    transform: none;
+}
+
+.primary-button:disabled:hover{
+    background: #d8d8d8;
+}
+
+@media screen and (max-width:600px){
+
+    .disable-box{
+        flex-direction: column;
+    }
+
+}
+
+/* ------------------------------
+   NG-READONLY
+------------------------------ */
+
+.readonly-box{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.readonly-status{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #263c33;
+}
+
+input[readonly]{
+    background-color: #ece8df;
+    color: #777;
+    cursor: not-allowed;
+}

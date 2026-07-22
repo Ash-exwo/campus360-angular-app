@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student Management App</title>
 
@@ -54,12 +51,7 @@
                     College Name
                 </label>
 
-                <input
-                    type="text"
-                    id="collegeName"
-                    ng-model="collegename"
-                    placeholder="Enter college name"
-                >
+                <input type="text" id="collegeName" ng-model="collegename" placeholder="Enter college name">
             </div>
 
         </section>
@@ -87,27 +79,17 @@
                         Student Count
                     </label>
 
-                    <input
-                        type="number"
-                        id="studentCount"
-                        ng-model="totalStudents"
-                    >
+                    <input type="number" id="studentCount" ng-model="totalStudents">
                 </div>
 
-                <h4
-                    class="status-message"
-                    ng-class="{
+                <h4 class="status-message" ng-class="{
                         'green': totalStudents > 1000,
                         'red': totalStudents <= 1000
-                    }"
-                >
+                    }">
                     Total Students: {{totalStudents}}
                 </h4>
 
-                <button
-                    type="button"
-                    ng-click="addstudent()"
-                >
+                <button type="button" ng-click="addstudent()">
                     + Add Student
                 </button>
 
@@ -133,21 +115,14 @@
                         Faculty Count
                     </label>
 
-                    <input
-                        type="number"
-                        id="facultyCount"
-                        ng-model="totalFaculty"
-                    >
+                    <input type="number" id="facultyCount" ng-model="totalFaculty">
                 </div>
 
                 <h4 class="status-message blueviolet">
                     Total Faculty: {{totalFaculty}}
                 </h4>
 
-                <button
-                    type="button"
-                    ng-click="addfaculty()"
-                >
+                <button type="button" ng-click="addfaculty()">
                     + Add Faculty
                 </button>
 
@@ -170,18 +145,11 @@
                 </span>
             </div>
 
-            <button
-                type="button"
-                class="secondary-button"
-                ng-click="showstudents = !showstudents"
-            >
+            <button type="button" class="secondary-button" ng-click="showstudents = !showstudents">
                 {{showstudents ? 'Hide Students' : 'Show Students'}}
             </button>
 
-            <ul
-                class="student-list"
-                ng-show="showstudents"
-            >
+            <ul class="student-list" ng-show="showstudents">
                 <li ng-repeat="student in students">
 
                     <span class="student-avatar">
@@ -260,11 +228,8 @@
                     Department
                 </label>
 
-                <select
-                    id="department"
-                    ng-model="selectedDepartments"
-                    ng-options="department for department in departments"
-                >
+                <select id="department" ng-model="selectedDepartments"
+                    ng-options="department for department in departments">
                     <option value="">
                         Select a department
                     </option>
@@ -291,10 +256,7 @@
                 </div>
             </div>
 
-            <div
-                class="department-info"
-                ng-switch="selectedDepartments"
-            >
+            <div class="department-info" ng-switch="selectedDepartments">
 
                 <div ng-switch-when="MCA">
                     <h3>Master of Computer Applications</h3>
@@ -364,10 +326,7 @@
                 </div>
             </div>
 
-            <div
-                class="init-details"
-                ng-init="collegecode = 'fisat123'; location = 'Angamaly'"
-            >
+            <div class="init-details" ng-init="collegecode = 'fisat123'; location = 'Angamaly'">
                 <div>
                     <span>College Code</span>
                     <strong>{{collegecode}}</strong>
@@ -381,6 +340,62 @@
 
         </section>
 
+
+        <!-- NG-DISABLED DEMO -->
+        <section class="card">
+
+            <div class="section-heading">
+                <span class="section-icon">🔒</span>
+
+                <div>
+                    <p class="section-label">AngularJS Directive</p>
+                    <h2>ng-disabled Demo</h2>
+                </div>
+            </div>
+
+            <div class="disable-box">
+
+                <button class="secondary-button" ng-click="allowAdmission()">
+                    Enable Admission
+                </button>
+
+                <button class="primary-button" ng-disabled="isDisabled">
+                    Disable Admission
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- NG-READONLY DEMO -->
+        <section class="card">
+
+            <div class="section-heading">
+                <span class="section-icon">📝</span>
+
+                <div>
+                    <p class="section-label">AngularJS Directive</p>
+                    <h2>ng-readonly Demo</h2>
+                </div>
+            </div>
+
+            <div class="readonly-box">
+
+                <label for="collegeId">College ID</label>
+
+                <input type="text" id="collegeId" ng-model="collegeId" ng-readonly="isReadOnly">
+
+                <button class="secondary-button" ng-click="toggleReadOnly()">
+                    Toggle ReadOnly
+                </button>
+
+                <p class="readonly-status">
+                    ReadOnly Status : {{isReadOnly}}
+                </p>
+
+            </div>
+
+        </section>
 
         <footer>
             <p>
