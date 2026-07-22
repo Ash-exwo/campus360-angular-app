@@ -3,140 +3,391 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Student Management App</title>
+
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="node_modules/angular/angular.js"></script>
     <script src="js/app.js"></script>
-
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body ng-controller="dashboardcontroller">
 
-    <!-- COLLEGE DATA -->
-    <h2>College Dashboard</h2>
+    <div class="dashboard-container">
 
-    <label>College Name</label><br>
-    <input type="text" ng-model="collegename">
-    <h1>{{collegename}}</h1>
+        <!-- HEADER -->
+        <header class="dashboard-header">
+            <div>
+                <p class="small-title">Campus 360</p>
+                <h1>College Dashboard</h1>
+                <p class="header-description">
+                    Student and faculty management system
+                </p>
+            </div>
 
-    <br><br>
-
-    <!-- TOTAL STUDENT DATA -->
-    <label>Total Students</label><br>
-    <input type="number" ng-model="totalStudents">
-
-    <h4 ng-class="{'green': totalStudents > 1000, 'red': totalStudents <= 1000}">
-        Total Students: {{totalStudents}}
-    </h4>
-
-    <button ng-click="addstudent()">
-        Add Student
-    </button>
-
-    <br><br>
+            <div class="college-logo">
+                🎓
+            </div>
+        </header>
 
 
-    <!-- TOTAL FACULTY DATA -->
-    <label>Total Faculty</label><br>
-    <input type="number" ng-model="totalFaculty">
+        <!-- COLLEGE DATA -->
+        <section class="card">
 
-    <h4 class="blueviolet">
-        Total Faculty: {{totalFaculty}}
-    </h4>
+            <div class="section-heading">
+                <span class="section-icon">🏛️</span>
 
-    <button ng-click="addfaculty()">
-        Add Faculty
-    </button>
+                <div>
+                    <p class="section-label">College Information</p>
+                    <h2>{{collegename}}</h2>
+                </div>
+            </div>
 
-    <br><br>
+            <div class="form-group">
+                <label for="collegeName">
+                    College Name
+                </label>
 
+                <input
+                    type="text"
+                    id="collegeName"
+                    ng-model="collegename"
+                    placeholder="Enter college name"
+                >
+            </div>
 
-    <!-- STUDENT LISTING -->
-    <h2>Student List</h2>
-
-    <button ng-click="showstudents = !showstudents">
-        Show / Hide Students
-    </button>
-
-    <ul ng-show="showstudents">
-        <li ng-repeat="student in students">
-            {{student}}
-        </li>
-    </ul>
-
-
-    <!-- FILTERATION -->
-    <h2>Filter Demo</h2>
-
-    <p>Uppercase : {{collegename | uppercase}}</p>
-    <p>Lowercase : {{collegename | lowercase}}</p>
-    <p>Currency : {{fees}}</p>
-    <p>Date : {{today | date: 'dd/mm/yyyy'}}</p>
-    <p>Number : {{fees | number:2}}</p>
-
-    <br>
+        </section>
 
 
-    <!-- DEPARTMENT SELECTION -->
-    <h2>Selected Department</h2>
-    <label for="">Select Department</label>
-    <br><br>
+        <!-- STUDENT AND FACULTY DETAILS -->
+        <section class="statistics-grid">
 
-    <select ng-model="selectedDepartments" ng-options="department for department in departments" name="" id=""></select>
+            <!-- STUDENT CARD -->
+            <div class="card statistic-card">
 
-    <!-- dependency injection -->
-    <p>Selected Department: {{selectedDepartments}}</p>
+                <div class="statistic-header">
+                    <div>
+                        <p class="section-label">Total Students</p>
+                        <h2>{{totalStudents}}</h2>
+                    </div>
+
+                    <span class="statistic-icon">
+                        👨‍🎓
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentCount">
+                        Student Count
+                    </label>
+
+                    <input
+                        type="number"
+                        id="studentCount"
+                        ng-model="totalStudents"
+                    >
+                </div>
+
+                <h4
+                    class="status-message"
+                    ng-class="{
+                        'green': totalStudents > 1000,
+                        'red': totalStudents <= 1000
+                    }"
+                >
+                    Total Students: {{totalStudents}}
+                </h4>
+
+                <button
+                    type="button"
+                    ng-click="addstudent()"
+                >
+                    + Add Student
+                </button>
+
+            </div>
 
 
-    <!-- DEPARTMENT INFORMATION -->
-    <h2>Department Info</h2>
+            <!-- FACULTY CARD -->
+            <div class="card statistic-card">
 
-    <div ng-switch="selectedDepartments">
-        <div ng-switch-when="MCA">
-            <h5>Computer Application</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
-                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
-                nam doloribus amet.</p>
-        </div>
+                <div class="statistic-header">
+                    <div>
+                        <p class="section-label">Total Faculty</p>
+                        <h2>{{totalFaculty}}</h2>
+                    </div>
 
-        <div ng-switch-when="IMCA">
-            <h5>Computer Application</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
-                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
-                nam doloribus amet.</p>
-        </div>
+                    <span class="statistic-icon">
+                        👩‍🏫
+                    </span>
+                </div>
 
-        <div ng-switch-when="CSD">
-            <h5>Computer Engineering</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
-                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
-                nam doloribus amet.</p>
-        </div>
+                <div class="form-group">
+                    <label for="facultyCount">
+                        Faculty Count
+                    </label>
 
-        <div ng-switch-when="BBA">
-            <h5>Business</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
-                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
-                nam doloribus amet.</p>
-        </div>
+                    <input
+                        type="number"
+                        id="facultyCount"
+                        ng-model="totalFaculty"
+                    >
+                </div>
 
-        <div ng-switch-when="BSC">
-            <h5>Computer Science Engineering</h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
-                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
-                nam doloribus amet.</p>
-        </div>
+                <h4 class="status-message blueviolet">
+                    Total Faculty: {{totalFaculty}}
+                </h4>
 
-        <div ng-switch-default>
-            <h5>Please select a department</h5>
-        </div>
-    </div>
+                <button
+                    type="button"
+                    ng-click="addfaculty()"
+                >
+                    + Add Faculty
+                </button>
 
-    <h2>ng-init Demo</h2>
-    <div ng-init="collegecode = 'fisat123'; location= 'angamaly' ">
-        <p>CollegeCode : {{collegecode}}</p>
-        <p>Location : {{location}}</p>
+            </div>
+
+        </section>
+
+
+        <!-- STUDENT LISTING -->
+        <section class="card">
+
+            <div class="section-title-row">
+                <div>
+                    <p class="section-label">Directory</p>
+                    <h2>Student List</h2>
+                </div>
+
+                <span class="count-badge">
+                    {{students.length}} Students
+                </span>
+            </div>
+
+            <button
+                type="button"
+                class="secondary-button"
+                ng-click="showstudents = !showstudents"
+            >
+                {{showstudents ? 'Hide Students' : 'Show Students'}}
+            </button>
+
+            <ul
+                class="student-list"
+                ng-show="showstudents"
+            >
+                <li ng-repeat="student in students">
+
+                    <span class="student-avatar">
+                        {{student.charAt(0)}}
+                    </span>
+
+                    <div>
+                        <h3>{{student}}</h3>
+                        <p>Registered Student</p>
+                    </div>
+
+                </li>
+            </ul>
+
+        </section>
+
+
+        <!-- FILTER DEMO -->
+        <section class="card">
+
+            <div class="section-heading">
+                <span class="section-icon">🔍</span>
+
+                <div>
+                    <p class="section-label">AngularJS Filters</p>
+                    <h2>Filter Demo</h2>
+                </div>
+            </div>
+
+            <div class="filter-grid">
+
+                <div class="filter-item">
+                    <span>Uppercase</span>
+                    <strong>{{collegename | uppercase}}</strong>
+                </div>
+
+                <div class="filter-item">
+                    <span>Lowercase</span>
+                    <strong>{{collegename | lowercase}}</strong>
+                </div>
+
+                <div class="filter-item">
+                    <span>Currency</span>
+                    <strong>{{fees | currency:'₹'}}</strong>
+                </div>
+
+                <div class="filter-item">
+                    <span>Date</span>
+                    <strong>{{today | date:'dd/MM/yyyy'}}</strong>
+                </div>
+
+                <div class="filter-item">
+                    <span>Number</span>
+                    <strong>{{fees | number:2}}</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEPARTMENT SELECTION -->
+        <section class="card">
+
+            <div class="section-heading">
+                <span class="section-icon">📚</span>
+
+                <div>
+                    <p class="section-label">Academic Department</p>
+                    <h2>Select Department</h2>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="department">
+                    Department
+                </label>
+
+                <select
+                    id="department"
+                    ng-model="selectedDepartments"
+                    ng-options="department for department in departments"
+                >
+                    <option value="">
+                        Select a department
+                    </option>
+                </select>
+            </div>
+
+            <p class="selected-value">
+                Selected Department:
+                <strong>{{selectedDepartments || 'Not selected'}}</strong>
+            </p>
+
+        </section>
+
+
+        <!-- DEPARTMENT INFORMATION -->
+        <section class="card">
+
+            <div class="section-heading">
+                <span class="section-icon">📖</span>
+
+                <div>
+                    <p class="section-label">Details</p>
+                    <h2>Department Information</h2>
+                </div>
+            </div>
+
+            <div
+                class="department-info"
+                ng-switch="selectedDepartments"
+            >
+
+                <div ng-switch-when="MCA">
+                    <h3>Master of Computer Applications</h3>
+
+                    <p>
+                        MCA focuses on software development, programming,
+                        database management and modern computer applications.
+                    </p>
+                </div>
+
+                <div ng-switch-when="IMCA">
+                    <h3>Integrated Master of Computer Applications</h3>
+
+                    <p>
+                        IMCA provides an integrated learning path in computer
+                        applications, programming and software technologies.
+                    </p>
+                </div>
+
+                <div ng-switch-when="CSD">
+                    <h3>Computer Science and Design</h3>
+
+                    <p>
+                        CSD combines computer science concepts with creative
+                        design, user experience and application development.
+                    </p>
+                </div>
+
+                <div ng-switch-when="BBA">
+                    <h3>Bachelor of Business Administration</h3>
+
+                    <p>
+                        BBA focuses on business management, finance,
+                        entrepreneurship, marketing and leadership.
+                    </p>
+                </div>
+
+                <div ng-switch-when="BSC">
+                    <h3>Bachelor of Science</h3>
+
+                    <p>
+                        BSC provides knowledge in science, computing,
+                        technology and analytical problem-solving.
+                    </p>
+                </div>
+
+                <div ng-switch-default>
+                    <p class="empty-message">
+                        Please select a department to view its information.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NG-INIT DEMO -->
+        <section class="card">
+
+            <div class="section-heading">
+                <span class="section-icon">⚙️</span>
+
+                <div>
+                    <p class="section-label">AngularJS Directive</p>
+                    <h2>ng-init Demo</h2>
+                </div>
+            </div>
+
+            <div
+                class="init-details"
+                ng-init="collegecode = 'fisat123'; location = 'Angamaly'"
+            >
+                <div>
+                    <span>College Code</span>
+                    <strong>{{collegecode}}</strong>
+                </div>
+
+                <div>
+                    <span>Location</span>
+                    <strong>{{location}}</strong>
+                </div>
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>
+                Campus 360 · Student Management Dashboard
+            </p>
+        </footer>
+
     </div>
 
 </body>

@@ -539,4 +539,16 @@ eg: https://www.tooplate.com/live/2167_orbital
 
 7. https://labs.google/fx/tools/flow - video generation
 
+
+The AngularJS concepts are still clearly separated:
+
+ng-model for two-way data binding
+ng-click for button actions
+ng-class for conditional styling
+ng-show for showing and hiding
+ng-repeat for listing students
+Filters for uppercase, lowercase, currency, date and numbers
+ng-options for the department dropdown
+ng-switch for department information
+ng-init for initial values
     
