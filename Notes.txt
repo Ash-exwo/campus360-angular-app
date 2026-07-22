@@ -533,6 +533,10 @@ TOOLS
 
 5. https://templatemo.com/ - design templates (template -> download ->  ->)
 
-https://www.tooplate.com/live/2167_orbital
+eg: https://www.tooplate.com/live/2167_orbital
+
+6. https://suno.com/ - audio generation
+
+7. https://labs.google/fx/tools/flow - video generation
 
     

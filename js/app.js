@@ -16,6 +16,16 @@ app.controller("dashboardcontroller", function ($scope) {
         "Ash"
     ];
 
+    $scope.fees = 25000
+
+    $scope.today = new Date()
+
+    $scope.departments=[
+        "IMCA", "MCA", "CSD", "BSC", "BBA"
+    ];
+
+    $scope.selectedDepartments = "CSE"
+
     // Hide student list initially
     $scope.showstudents = false;
 

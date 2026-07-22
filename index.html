@@ -13,6 +13,7 @@
 
 <body ng-controller="dashboardcontroller">
 
+    <!-- COLLEGE DATA -->
     <h2>College Dashboard</h2>
 
     <label>College Name</label><br>
@@ -21,6 +22,7 @@
 
     <br><br>
 
+    <!-- TOTAL STUDENT DATA -->
     <label>Total Students</label><br>
     <input type="number" ng-model="totalStudents">
 
@@ -34,6 +36,8 @@
 
     <br><br>
 
+
+    <!-- TOTAL FACULTY DATA -->
     <label>Total Faculty</label><br>
     <input type="number" ng-model="totalFaculty">
 
@@ -47,6 +51,8 @@
 
     <br><br>
 
+
+    <!-- STUDENT LISTING -->
     <h2>Student List</h2>
 
     <button ng-click="showstudents = !showstudents">
@@ -58,6 +64,80 @@
             {{student}}
         </li>
     </ul>
+
+
+    <!-- FILTERATION -->
+    <h2>Filter Demo</h2>
+
+    <p>Uppercase : {{collegename | uppercase}}</p>
+    <p>Lowercase : {{collegename | lowercase}}</p>
+    <p>Currency : {{fees}}</p>
+    <p>Date : {{today | date: 'dd/mm/yyyy'}}</p>
+    <p>Number : {{fees | number:2}}</p>
+
+    <br>
+
+
+    <!-- DEPARTMENT SELECTION -->
+    <h2>Selected Department</h2>
+    <label for="">Select Department</label>
+    <br><br>
+
+    <select ng-model="selectedDepartments" ng-options="department for department in departments" name="" id=""></select>
+
+    <!-- dependency injection -->
+    <p>Selected Department: {{selectedDepartments}}</p>
+
+
+    <!-- DEPARTMENT INFORMATION -->
+    <h2>Department Info</h2>
+
+    <div ng-switch="selectedDepartments">
+        <div ng-switch-when="MCA">
+            <h5>Computer Application</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
+                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
+                nam doloribus amet.</p>
+        </div>
+
+        <div ng-switch-when="IMCA">
+            <h5>Computer Application</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
+                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
+                nam doloribus amet.</p>
+        </div>
+
+        <div ng-switch-when="CSD">
+            <h5>Computer Engineering</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
+                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
+                nam doloribus amet.</p>
+        </div>
+
+        <div ng-switch-when="BBA">
+            <h5>Business</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
+                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
+                nam doloribus amet.</p>
+        </div>
+
+        <div ng-switch-when="BSC">
+            <h5>Computer Science Engineering</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus hic deserunt odit voluptatibus!
+                Impedit cupiditate id iste, ratione itaque adipisci dolor atque est temporibus qui enim exercitationem
+                nam doloribus amet.</p>
+        </div>
+
+        <div ng-switch-default>
+            <h5>Please select a department</h5>
+        </div>
+    </div>
+
+    <h2>ng-init Demo</h2>
+    <div ng-init="collegecode = 'fisat123'; location= 'angamaly' ">
+        <p>CollegeCode : {{collegecode}}</p>
+        <p>Location : {{location}}</p>
+    </div>
 
 </body>
 
