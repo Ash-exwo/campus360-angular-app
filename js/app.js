@@ -9,11 +9,16 @@ app.controller("dashboardcontroller", function ($scope) {
 
     // Student List
     $scope.students = [
-        "Sajana",
-        "Hiba",
-        "Surumi",
-        "Amritha",
-        "Ash"
+        "Joy Boy Luffy",
+        "Pirate Hunter Zoro",
+        "Black Leg Sanji",
+        "God Usopp",
+        "Cat Burglar Nami",
+        "Cotton Candy Lover Chopper",
+        "Devil Child Robin",
+        "Cyborg Franky",
+        "Soul King Brook",
+        "First Son of the Sea Jinbe"
     ];
 
     // Filter Demo Data
@@ -47,6 +52,8 @@ app.controller("dashboardcontroller", function ($scope) {
 
     // Hide Student List Initially
     $scope.showstudents = false;
+
+
 
     // Add Student
     $scope.addstudent = function () {
