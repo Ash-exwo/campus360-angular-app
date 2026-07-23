@@ -518,35 +518,115 @@ hr {
 
 
 /* ------------------------------
-   STUDENT REGISTRATION
+   REGISTRATION FORM
 ------------------------------ */
 
-/* Styles the unwrapped registration heading */
+.registration-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
 
-.dashboard-container > h2 {
-    margin-bottom: 18px;
+.registration-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-field label {
+    margin-bottom: 8px;
+}
+
+.registration-field input,
+.registration-field select,
+.registration-field textarea {
+    width: 100%;
+}
+
+.registration-field textarea {
+    min-height: 120px;
+    padding: 12px 14px;
     color: #f0f3f6;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 27px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    resize: vertical;
+    background-color: #0d1117;
+    border: 1px solid #3b434d;
+    border-radius: 8px;
+    outline: none;
 }
 
-/* Registration form */
+.registration-field textarea:focus {
+    border-color: #d4a65a;
+    box-shadow: 0 0 0 3px rgba(212, 166, 90, 0.12);
+}
 
-.dashboard-container > form {
-    margin-bottom: 25px;
-    padding: 28px;
-    background-color: #161b22;
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* ------------------------------
+   RADIO BUTTONS
+------------------------------ */
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    min-height: 46px;
+    padding: 10px 14px;
+    background-color: #0d1117;
+    border: 1px solid #3b434d;
+    border-radius: 8px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio-group input {
+    width: auto;
+    margin: 0;
+    accent-color: #d4a65a;
+}
+
+
+/* ------------------------------
+   ERROR MESSAGES
+------------------------------ */
+
+.error {
+    margin-top: 7px;
+    color: #ff7b72;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* ------------------------------
+   REGISTER BUTTON
+------------------------------ */
+
+.register-button {
+    margin-top: 24px;
+}
+
+.register-button:disabled {
+    color: #737b85;
+    cursor: not-allowed;
+    background-color: #21262d;
     border: 1px solid #30363d;
-    border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    opacity: 0.7;
+    transform: none;
 }
 
-.dashboard-container > form input {
-    max-width: 500px;
-}
-
-.dashboard-container > form button {
-    margin-top: 5px;
+.register-button:disabled:hover {
+    background-color: #21262d;
+    transform: none;
 }
 
 
@@ -554,20 +634,64 @@ hr {
    FORM STATUS
 ------------------------------ */
 
-/*
-   These paragraphs are direct children of the dashboard
-   and belong to the Form Status section.
-*/
+.form-status-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
 
-.dashboard-container > h2 ~ p {
-    margin-bottom: 10px;
-    padding: 13px 15px;
-    color: #c9d1d9;
-    background-color: #161b22;
+.form-status-grid p {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 15px;
+    color: #8b949e;
+    font-size: 13px;
+    background-color: #0d1117;
     border: 1px solid #30363d;
-    border-left: 4px solid #d4a65a;
-    border-radius: 7px;
-    font-size: 14px;
+    border-radius: 8px;
+}
+
+.form-status-grid strong {
+    color: #d4a65a;
+    font-size: 17px;
+}
+
+
+/* ------------------------------
+   RESPONSIVE FORM
+------------------------------ */
+
+@media screen and (max-width: 750px) {
+
+    .registration-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-status-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .radio-group {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .register-button {
+        width: 100%;
+    }
 }
 
 
