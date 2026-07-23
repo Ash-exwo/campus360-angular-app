@@ -54,6 +54,14 @@ app.controller("dashboardcontroller", function ($scope) {
     $scope.showstudents = false;
 
 
+    // Student Registration
+
+    $scope.student = {};
+
+    $scope.registerStudent = function (){
+        alert("Student Registration is Successfull")
+    }
+
 
     // Add Student
     $scope.addstudent = function () {
